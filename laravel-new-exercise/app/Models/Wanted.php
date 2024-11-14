@@ -27,4 +27,9 @@ class Wanted extends Model
     {
         return $this->belongsTo(Device::class);
     }
+
+    public function felonies()
+    {
+        return $this->belongsToMany(Felony::class, 'wanted_felony');
+    }
 }
