@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DeviceSeeder::class,
+            FelonySeeder::class,
             WantedSeeder::class,
         ]);
     }

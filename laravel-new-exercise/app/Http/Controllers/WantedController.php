@@ -59,7 +59,8 @@ class WantedController extends Controller
             'last_name' => 'required|string|max:50',
             'date_of_birth' => 'required|date',
             'nationality' => 'required|string|max:50',
-            'felony' => 'required|string|max:255',
+            'felonies' => 'required|array',
+            'felonies.*' => 'exists:felonies,id',
             'device_id' => 'required|integer|exists:devices,id',
         ]);
 
@@ -75,6 +76,7 @@ class WantedController extends Controller
 
         $wanted->save();
 
+        $wanted->felonies()->sync($validatedData['felonies']);
 
         return redirect()->route('admin.wanted.home')->with('success', 'Wanted criminal created successfully!');
     }

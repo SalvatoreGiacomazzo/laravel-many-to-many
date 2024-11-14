@@ -30,6 +30,6 @@ class Wanted extends Model
 
     public function felonies()
     {
-        return $this->belongsToMany(Felony::class, 'wanted_felony');
+        return $this->belongsToMany(Felony::class, 'wanted_felony', 'wanted_id', 'felony_id');
     }
 }

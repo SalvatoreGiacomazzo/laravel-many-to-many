@@ -9,9 +9,9 @@ class Felony extends Model
 {
     use HasFactory;
 
-
+    protected $table = 'felonies';
     public function wanted()
     {
-        return $this->belongsToMany(Wanted::class, 'wanted_felony');
+        return $this->belongsToMany(Wanted::class, 'wanted_felony', 'wanted_id', 'felony_id');
     }
 }

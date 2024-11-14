@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('wanted_felony', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('wanted_id')->constrained('wanted')->cascadeOnDelete();
+            $table->foreignId('felony_id')->constrained('felonies')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -22,6 +24,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('wanted_felony', function (Blueprint $table) {
+            $table->dropForeign(['wanted_id']);
+            $table->dropForeign(['felony_id']);
+        });
+
+
         Schema::dropIfExists('wanted_felony');
     }
 };
