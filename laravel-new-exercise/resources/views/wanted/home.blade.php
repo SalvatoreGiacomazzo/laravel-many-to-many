@@ -11,7 +11,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">Date of Birth</th>
             <th scope="col">Nationality</th>
-            <th scope="col">Felony</th>
+            <th scope="col">Felonies</th>
             <th scope="col">Used Device</th>
             <th scope="col">Show</th>
         </tr>
@@ -24,7 +24,13 @@
                 <td>{{ $wanted->last_name }}</td>
                 <td>{{ $wanted->date_of_birth }}</td>
                 <td>{{ $wanted->nationality }}</td>
-                <td>{{ $wanted->felony }}</td>
+                <td>
+                    @forelse($wanted->felonies as $felony)
+              <span class="felony">{{ $felony->name }}</span><br>
+                    @empty
+                  <span>No felony assigned</span>
+                    @endforelse
+                </td>
                 <td>{{$wanted->device->device_type}}</td>
                 <td><a href="{{ route('admin.wanted.show', $wanted->id) }}"><button>Show</button></a></td>
             </tr>

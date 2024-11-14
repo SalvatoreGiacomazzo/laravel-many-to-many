@@ -19,7 +19,7 @@ class WantedController extends Controller
     {
 
 
-        $wantedList = Wanted::paginate(10);
+        $wantedList = Wanted::with('felonies')->paginate(10);
 
         return view('wanted.home', ['wantedList' => $wantedList]);
     }
