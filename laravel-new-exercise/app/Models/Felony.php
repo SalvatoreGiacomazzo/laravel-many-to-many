@@ -12,6 +12,6 @@ class Felony extends Model
     protected $table = 'felonies';
     public function wanted()
     {
-        return $this->belongsToMany(Wanted::class, 'wanted_felony', 'wanted_id', 'felony_id');
+        return $this->belongsToMany(Wanted::class, 'wanted_felony', 'felony_id', 'wanted_id')->withTimestamps();
     }
 }
