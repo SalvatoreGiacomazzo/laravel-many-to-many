@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wanted;
 use App\Models\Device;
+use App\Models\Felony;
 
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class WantedController extends Controller
             'Espionage'
         ];
 
-
+        $felonies = Felony::all();
 
         $devices = Device::all();
         return view('wanted.create', compact('devices', 'felonies'));
@@ -59,7 +60,7 @@ class WantedController extends Controller
             'last_name' => 'required|string|max:50',
             'date_of_birth' => 'required|date',
             'nationality' => 'required|string|max:50',
-            'felonies' => 'required|array',
+            'felonies' => 'required|array|max:4',
             'felonies.*' => 'exists:felonies,id',
             'device_id' => 'required|integer|exists:devices,id',
         ]);
@@ -74,9 +75,9 @@ class WantedController extends Controller
         $wanted->device_id = $validatedData['device_id'];
 
 
+        $wanted->felonies()->attach($validatedData['felony']);
         $wanted->save();
 
-        $wanted->felonies()->sync($validatedData['felonies']);
 
         return redirect()->route('admin.wanted.home')->with('success', 'Wanted criminal created successfully!');
     }

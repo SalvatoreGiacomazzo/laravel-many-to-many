@@ -29,17 +29,19 @@
 
     </div>
 
+
+    <!-- NOT WORKING
     <div class="form-group">
-        <label for="felony">Felony</label>
-        <select class="form-control" id="felony" name="felony">
-            <option value="">Select Felony</option>
+        <label for="felony">Select Felonies</label>
+        <select class="form-control" id="felony" name="felony[]" multiple>
+            <option value="" disabled selected>Select Felonies</option>
             @foreach($felonies as $felony)
-                <option value="{{ $felony }}" {{ old('felony') == $felony ? 'selected' : '' }}>
-                    {{ $felony }}
+                <option value="{{ $felony->id }}" {{ in_array($felony->id, old('felony', [])) ? 'selected' : '' }}>
+                    {{ $felony->name }}
                 </option>
             @endforeach
         </select>
-    </div>
+        -->
 
     <div class="form-group">
         <label for="device_id">Device</label>
