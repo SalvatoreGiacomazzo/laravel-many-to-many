@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-
+<a href="{{ route('admin.wanted.create') }}">Add New</a>
 <table class="table table-striped table-dark">
     <thead>
         <tr>

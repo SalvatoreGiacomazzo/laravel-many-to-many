@@ -21,6 +21,19 @@ class WantedSeeder extends Seeder
 
         $devices = Device::all()->pluck("id");
 
+        $felonies = [
+            'Scam',
+            'DDos Attack',
+            'Identity Theft',
+            'Malware Distribution',
+            'Phishing',
+            'Security Breaching',
+            'Copyright Violation',
+            'Espionage'
+        ];
+
+
+
         for ($i = 0; $i < 50; $i++) {
             $wanted = new Wanted();
 
@@ -29,7 +42,7 @@ class WantedSeeder extends Seeder
             $wanted->last_name = $faker->lastName();
             $wanted->date_of_birth = $faker->date('Y-m-d');
             $wanted->nationality = $faker->country();
-            $wanted->felony = $faker->sentence(3);
+            $wanted->felony = $faker->randomElement($felonies);
 
             $wanted->device_id = $faker->randomElement($devices);
 
