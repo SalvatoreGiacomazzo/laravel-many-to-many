@@ -31,8 +31,14 @@
 
     <div class="form-group">
         <label for="felony">Felony</label>
-        <textarea class="form-control" id="felony" name="felony" rows="3" placeholder="Describe the felony">{{ old('felony') }}</textarea>
-
+        <select class="form-control" id="felony" name="felony">
+            <option value="">Select Felony</option>
+            @foreach($felonies as $felony)
+                <option value="{{ $felony }}" {{ old('felony') == $felony ? 'selected' : '' }}>
+                    {{ $felony }}
+                </option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group">

@@ -35,8 +35,21 @@ class WantedController extends Controller
     public function create()
     {
 
+        $felonies = [
+            'Scam',
+            'DDos Attack',
+            'Identity Theft',
+            'Malware Distribution',
+            'Phishing',
+            'Security Breaching',
+            'Copyright Violation',
+            'Espionage'
+        ];
+
+
+
         $devices = Device::all();
-        return view('wanted.create', compact('devices'));
+        return view('wanted.create', compact('devices', 'felonies'));
     }
     public function store(Request $request)
     {
