@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use App\Models\Device;
 use App\Models\Wanted;
+use App\Models\Felony;
 use Illuminate\Http\Request;
 
 class WantedSeeder extends Seeder
