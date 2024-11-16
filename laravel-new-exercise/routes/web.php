@@ -31,8 +31,8 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function () {
     Route::get('/wanted', [WantedController::class, 'index'])->name('wanted.home');
     Route::get('/wanted/create', [WantedController::class, 'create'])->name('wanted.create');
     Route::get('/wanted/{id}', [WantedController::class, 'show'])->name('wanted.show');
+    Route::delete('/wanted/{id}', [WantedController::class, 'destroy'])->name('wanted.delete');
     Route::post('/wanted', [WantedController::class, 'store'])->name('wanted.store');
-    Route::delete('//wanted/{id}', [WantedController::class, 'destroy'])->name('wanted.delete');
 });
 
 Route::get('/login', function () {

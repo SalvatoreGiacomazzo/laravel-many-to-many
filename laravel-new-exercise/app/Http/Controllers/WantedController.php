@@ -80,4 +80,16 @@ class WantedController extends Controller
 
         return redirect()->route('admin.wanted.home')->with('success');
     }
+
+
+    public function destroy($id)
+    {
+        $wanted = Wanted::findOrFail($id);
+
+        $wanted->felonies()->detach();
+
+        $wanted->delete();
+
+        return redirect()->route('admin.wanted.home')->with('success');
+    }
 }

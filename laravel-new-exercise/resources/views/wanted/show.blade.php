@@ -20,6 +20,11 @@
       <p class="card-text"><strong>In the State of:</strong>{{$wanted->nationality}}</p>
       <p class="card-text"><strong>Most Used Device:</strong>{{$wanted->device->device_type}}</p>
       <a href="{{route('admin.wanted.home')}}" class="btn btn-dark">Go back</a>
+      <form action="{{ route('admin.wanted.delete', $wanted->id) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
     </div>
   </div>
 
