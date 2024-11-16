@@ -60,25 +60,24 @@ class WantedController extends Controller
             'last_name' => 'required|string|max:50',
             'date_of_birth' => 'required|date',
             'nationality' => 'required|string|max:50',
-            'felonies' => 'required|array|max:4',
-            'felonies.*' => 'exists:felonies,id',
+            'felony' => 'required|array|max:4',
+            'felony.*' => 'exists:felonies,id',
             'device_id' => 'required|integer|exists:devices,id',
         ]);
 
 
-        $wanted = new Wanted();
-        $wanted->name = $validatedData['name'];
-        $wanted->last_name = $validatedData['last_name'];
-        $wanted->date_of_birth = $validatedData['date_of_birth'];
-        $wanted->nationality = $validatedData['nationality'];
-        $wanted->felony = $validatedData['felony'];
-        $wanted->device_id = $validatedData['device_id'];
+        $wanted = Wanted::create([
+            'name' => $validatedData['name'],
+            'last_name' => $validatedData['last_name'],
+            'date_of_birth' => $validatedData['date_of_birth'],
+            'nationality' => $validatedData['nationality'],
+            'device_id' => $validatedData['device_id'],
+        ]);
 
 
         $wanted->felonies()->attach($validatedData['felony']);
-        $wanted->save();
 
 
-        return redirect()->route('admin.wanted.home')->with('success', 'Wanted criminal created successfully!');
+        return redirect()->route('admin.wanted.home')->with('success');
     }
 }

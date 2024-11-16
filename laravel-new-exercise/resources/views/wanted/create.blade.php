@@ -30,18 +30,22 @@
     </div>
 
 
-    <!-- NOT WORKING
+
     <div class="form-group">
-        <label for="felony">Select Felonies</label>
-        <select class="form-control" id="felony" name="felony[]" multiple>
-            <option value="" disabled selected>Select Felonies</option>
+        <label>Select Felonies</label>
+        <div id="felony-checkbox-group">
             @foreach($felonies as $felony)
-                <option value="{{ $felony->id }}" {{ in_array($felony->id, old('felony', [])) ? 'selected' : '' }}>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input felony-checkbox" id="felony-{{ $felony->id }}" name="felony[]" value="{{ $felony->id }}" {{ in_array($felony->id, old('felony', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="felony-{{ $felony->id }}">
                     {{ $felony->name }}
-                </option>
+                </label>
+            </div>
             @endforeach
-        </select>
-        -->
+        </div>
+        <small class="text-muted">You can select up to 4 felonies.</small>
+    </div>
+
 
     <div class="form-group">
         <label for="device_id">Device</label>
